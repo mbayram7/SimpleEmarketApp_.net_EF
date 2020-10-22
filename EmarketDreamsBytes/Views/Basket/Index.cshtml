@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EmarketDreamsBytes.Entity.Basket>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td> 
+        <td>
+            @Html.ActionLink("Remove Product From Basket", "Delete", new { id=item.BasketId }, new { @class = "btn btn-danger", @role = "button" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<a href="/Order/AddressList" class="btn btn-success"> Buy Products </a>

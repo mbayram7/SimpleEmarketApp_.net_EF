@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("E-Market", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+
+
+            <div class="navbar-collapse collapse" style="float:left">
+                @{
+                    if (Session["LoginUser"] != null)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                        </ul>
+                    }
+
+                }
+
+            </div>
+
+
+            <div style="float:right; color:white">
+                @{
+                    if (Session["LoginUser"] == null)
+                    {
+                        <h4>
+                            <p>
+
+                                |  <a href="/User-Login" style="color:darkorange">Login User</a> |
+                                <a href="/User-Register" style="color:darkorange">User Register</a> |
+
+                            </p>
+                        </h4>
+                    }
+                    else
+                    {
+                        //üye girişi yapıldıktan sonra
+                        var user = Session["LoginUSer"] as EmarketDreamsBytes.Entity.User;
+
+                        <p>welcome @user.UserName</p>
+
+                        <h4>
+                            <p>
+                                |<a href="/Basket" style="color:cornflowerblue">Basket</a> |
+                                
+
+                                <a href="/Orders" style="color:cornflowerblue">Orders</a> |
+
+
+                                <a href="/Logout" style="color:crimson">Logout</a> |
+
+                            </p>
+                        </h4>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year -  E Market Test</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

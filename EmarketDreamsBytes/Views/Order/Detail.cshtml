@@ -1,0 +1,81 @@
+﻿@model EmarketDreamsBytes.Entity.Order
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h3>order number: @Model.OrderId </h3>
+<h2 style="color:darkturquoise">Order is preparing..</h2>
+
+<hr />
+<h4>Bank Info</h4>
+<table>
+
+    <tr>
+        <td>Bank</td>
+        <td>Bank Name</td>
+    </tr>
+
+    <tr>
+        <td>IBAN</td>
+        <td>TR123456789123456879</td>
+    </tr>
+
+    <tr>
+        <td>recipient name</td>
+        <td>Company Info</td>
+    </tr>
+
+</table>
+
+
+<a href="/" class="btn btn-info">Back Main</a>
+
+
+<hr />
+<h4>User Info</h4>
+<table>
+
+    <tr>
+        <td>@Model.UserName</td>
+        <td>User Address @Model.UserAddress</td>
+    </tr>
+
+
+</table>
+
+<hr />
+<h4>Order Info</h4>
+<table>
+
+    <tr>
+        <td>Total Price</td>
+        <td>@Model.TotalPrice.ToString("##,##")</td>
+    </tr>
+
+
+</table>
+
+<hr />
+<h4>Product Info</h4>
+<table>
+
+    <tr>
+        <th>Product</th>
+        <th>Piece</th>
+    </tr>
+
+    @{
+        foreach (var item in Model.OrderProduct)
+        {
+            var p = new EmarketDreamsBytes.MarketDB().Products.Where(x => x.ProductId == item.OrderId).FirstOrDefault();
+            <tr>
+                <td>@item.Product.ProductName</td>
+                <td>@item.Quantity</td>
+            </tr>
+
+        }
+    }
+
+
+</table>

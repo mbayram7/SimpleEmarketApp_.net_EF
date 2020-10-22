@@ -1,0 +1,70 @@
+﻿@model IEnumerable<EmarketDreamsBytes.Entity.Product>
+
+
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "AdminProductIndex";
+}
+
+<h2>Admin Product Page</h2>
+<br />
+
+<div>
+    <div style="float:left">
+        @Html.ActionLink("Add New Product", "Create", new { }, new { @class = "btn btn-info" })
+    </div>
+
+    <div style="float:right">
+        <a href="GetJson" class="btn btn-warning" style="border-color:black"> Export Json</a>
+    </div>
+</div>
+
+<br /><br /><br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+
+<div>
+    <a href="~/Admin"> Back to Admin Page</a>
+</div>

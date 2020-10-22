@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EmarketDreamsBytes.Entity.UserAddress>
+
+@{
+    ViewBag.Title = "AddressList";
+}
+
+<h3>Address List</h3>
+
+<div style="float:right">
+    <h4>
+        @Html.ActionLink("Create New Address", "CreateAddress")
+    </h4>
+</div>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            <b><label> User Address </label></b>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UAddress)
+            </td>
+            <td>
+                @Html.ActionLink("Select Address", "CreateOrder", new { id = item.UserAdressID }, new { @class = "btn btn-info" })  |
+                @Html.ActionLink("Remove Address", "DeleteAddress", new { id = item.UserAdressID }, new { @class = "text-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

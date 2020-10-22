@@ -1,0 +1,93 @@
+﻿@model IEnumerable<EmarketDreamsBytes.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    var isLogin = ViewBag.IsLogin;
+}
+
+<h3 style="color:cornflowerblue">Products</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @*<input type="button" class="btn btn-info" data-pID="@item.ProductId" id="sepeteAt" value="Sepete At" onclick="SepeteAtClick()" />*@
+                <a href="#" data-pID="@item.ProductId" class="btn btn-info" id="addBasket"> Add to cart</a>
+            </td>
+        </tr>
+
+    }
+</table>
+
+
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {  //sadece ilk ürünü basket e atıyor ????
+
+            $("#addBasket").on("click", function () {
+                var pid = $(this).attr("data-pID");
+                $.post("/Basket/AddProduct?productId=" + pid + "&quantity=1", function (data) {
+                    alert("Ürün sepete atıldı..");    
+                });    
+                return false;
+            });
+            
+        });
+    </script>
+}
+
+
+
+@*@section scripts{
+    <script type="text/javascript">
+
+        function SepeteAtClick() {
+
+            var pid = $(this).attr("data-pID");
+            $.post("/Basket/AddProduct?productID=" + pid + "&quantity=1", function () {
+                alert("Ürün sepete atıldı..");
+            });
+
+            return false;
+        }
+
+    </script>
+    }*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+

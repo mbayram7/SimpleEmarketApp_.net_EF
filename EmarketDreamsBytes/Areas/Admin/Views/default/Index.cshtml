@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    var user = Session["AdminLoginUser"] as EmarketDreamsBytes.Entity.User;
+}
+
+<h2>' @user.UserName ' - Admin Page</h2>
+<br />
+<hr />
+<ul>
+    <li>
+        <a href="~/Users/Index" class="btn btn-info"> Users </a>
+    </li>
+    <br />
+    <li>
+        <a href="~/Products/AdminProductsIndex" class="btn btn-info"> Products </a>
+    </li>
+</ul>
+

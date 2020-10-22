@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+
+}
+<style>
+
+    .left {
+        width: 220px;
+        float: left;
+        margin: 5px;
+    }
+
+    .right {
+        width: 120px;
+        float: left;
+    }
+
+    .border-right {
+        border-right: 1px solid black;
+    }
+</style>
+
+
+<hr />
+
+@{
+    if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+
+        </div>
+    }
+}
+
+<div class="container">
+
+
+    <h2>User Login</h2>
+    <br />
+    <br />
+    <div class="col-md-6 border-right">
+        <form action="/User-Login" method="post">
+            <div class="left">
+                @Html.Label("User Name")
+            </div>
+            <div class="right">
+                @Html.TextBox("Username")
+            </div>
+
+            <div class="row"></div>
+
+            <div class="left">
+                @Html.Label("Password")
+            </div>
+            <div class="right">
+                @Html.Password("Userpassword")
+            </div>
+
+            <div class="row"></div>
+            <br />
+            <button type="submit" class="btn btn-primary"> Login </button>
+        </form>
+    </div>
+
+    <br />
+
+    <div class="col-md-6">
+
+        <p style="color:crimson"> // Admin info: admin - 1234 </p>
+        <p style="color:crimson"> // User info: test - 1234 </p>
+        <p style="color:crimson"> // User and product operations can be made with the admin login. Purchases can be made with the user login. </p>
+
+        <p style="color:crimson"> // You can get json output from the product page with admin login. </p>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
